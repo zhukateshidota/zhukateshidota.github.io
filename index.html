@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preloader</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Gaya dasar body */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow: hidden; /* Mencegah scroll saat preloader aktif */
+        }
+
+        /* Kontainer preloader */
+        #loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999;
+            transition: opacity 0.7s ease-out;
+        }
+
+        /* Animasi putar kartu */
+        @keyframes flip {
+            0%, 100% {
+                transform: rotateY(0deg);
+            }
+            50% {
+                transform: rotateY(180deg);
+            }
+        }
+
+        /* Gaya 3D kartu */
+        .card-preloader {
+            transform-style: preserve-3d;
+            backface-visibility: hidden; /* Sembunyikan sisi belakang saat berputar */
+        }
+
+        /* Terapkan animasi saat body memiliki kelas 'loaded' */
+        .loaded .card-preloader {
+            animation: flip 3.5s infinite;
+        }
+
+        /* Jeda animasi untuk setiap kartu */
+        .loaded .card-preloader:nth-child(1) { animation-delay: 0s; }
+        .loaded .card-preloader:nth-child(2) { animation-delay: 0.2s; }
+        .loaded .card-preloader:nth-child(3) { animation-delay: 0.4s; }
+        .loaded .card-preloader:nth-child(4) { animation-delay: 0.6s; }
+        .loaded .card-preloader:nth-child(5) { animation-delay: 0.8s; }
+        .loaded .card-preloader:nth-child(6) { animation-delay: 1.0s; }
+        .loaded .card-preloader:nth-child(7) { animation-delay: 1.2s; }
+        .loaded .card-preloader:nth-child(8) { animation-delay: 1.4s; }
+        .loaded .card-preloader:nth-child(9) { animation-delay: 1.6s; }
+        .loaded .card-preloader:nth-child(10) { animation-delay: 1.8s; }
+        .loaded .card-preloader:nth-child(11) { animation-delay: 2.0s; }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader Section -->
+    <div id="loader-container" class="flex flex-col items-center justify-around p-4 bg-gradient-to-br from-blue-700 to-indigo-900">
+        
+        <!-- Logo -->
+        <img
+            src="https://i.imgur.com/TuaPtWL.png"
+            alt="Logo PMII"
+            class="w-1/5 max-w-[70px] md:w-[15%] md:max-w-[80px] h-auto"
+            onerror="this.onerror=null;this.src='https://placehold.co/80x80/000000/FFFFFF?text=Logo';"
+        >
+        
+        <!-- Kartu Berputar -->
+        <div id="flipping-cards-wrapper">
+            <div class="flex justify-center items-center flex-wrap gap-1">
+                <div class="card-preloader flex items-center justify-center p-1 bg-yellow-400 text-indigo-900 text-lg sm:text-xl md:text-2xl font-bold rounded shadow-md">P</div>
+                <div class="card-preloader flex items-center justify-center p-1 bg-yellow-400 text-indigo-900 text-lg sm:text-xl md:text-2xl font-bold rounded shadow-md">E</div>
+                <div class="card-preloader flex items-center justify-center p-1 bg-yellow-400 text-indigo-900 text-lg sm:text-xl md:text-2xl font-bold rounded shadow-md">R</div>
+                <div class="card-preloader flex items-center justify-center p-1 bg-yellow-400 text-indigo-900 text-lg sm:text-xl md:text-2xl font-bold rounded shadow-md">M</div>
+                <div class="card-preloader flex items-center justify-center p-1 bg-yellow-400 text-indigo-900 text-lg sm:text-xl md:text-2xl font-bold rounded shadow-md">A</div>
+                <div class="card-preloader flex items-center justify-center p-1 bg-yellow-400 text-indigo-900 text-lg sm:text-xl md:text-2xl font-bold rounded shadow-md">I</div>
+                <div class="card-preloader flex items-center justify-center p-1 bg-yellow-400 text-indigo-900 text-lg sm:text-xl md:text-2xl font-bold rounded shadow-md">S</div>
+                <div class="card-preloader flex items-center justify-center p-1 bg-yellow-400 text-indigo-900 text-lg sm:text-xl md:text-2xl font-bold rounded shadow-md">I</div>
+                <div class="card-preloader flex items-center justify-center p-1 bg-yellow-400 text-indigo-900 text-lg sm:text-xl md:text-2xl font-bold rounded shadow-md">N</div>
+                <div class="card-preloader flex items-center justify-center p-1 bg-yellow-400 text-indigo-900 text-lg sm:text-xl md:text-2xl font-bold rounded shadow-md">D</div>
+                <div class="card-preloader flex items-center justify-center p-1 bg-yellow-400 text-indigo-900 text-lg sm:text-xl md:text-2xl font-bold rounded shadow-md">O</div>
+            </div>
+        </div>
+        
+        <!-- Teks Footer -->
+        <div class="text-center">
+            <p class="font-bold text-yellow-400 text-xs md:text-sm">Create By PKC PMII Bali Nusra</p>
+            <p class="text-white text-[10px] md:text-xs mt-1">Versi 0.1.1</p>
+        </div>
+    </div>
+
+    <script>
+        // Logika untuk preloader
+        window.addEventListener('load', function() {
+            const body = document.body;
+
+            // Tambah kelas 'loaded' untuk memicu animasi kartu
+            body.classList.add('loaded');
+
+            // Alihkan ke halaman beranda setelah 5 detik
+            setTimeout(function() {
+                window.location.href = 'beranda.html';
+            }, 5000); 
+        });
+    </script>
+
+</body>
+</html>
