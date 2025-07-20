@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIbat</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Library untuk Parsing Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+        /* Gaya dasar body */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Animasi shimmer untuk skeleton loader */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        .skeleton-shimmer {
+            animation: shimmer 2s infinite linear;
+            background: linear-gradient(to right, #e2e8f0 4%, #cbd5e1 25%, #e2e8f0 36%);
+            background-size: 1000px 100%;
+        }
+
+        /* Styling untuk konten Markdown dari AI */
+        .ai-response h1, .ai-response h2, .ai-response h3 { @apply font-bold my-3 text-gray-800; }
+        .ai-response h1 { @apply text-xl; }
+        .ai-response h2 { @apply text-lg; }
+        .ai-response h3 { @apply text-base; }
+        .ai-response p { @apply my-2 text-gray-700 leading-relaxed; }
+        .ai-response ul, .ai-response ol { @apply pl-5 my-3 space-y-1 text-gray-700; }
+        .ai-response ul { @apply list-disc; }
+        .ai-response ol { @apply list-decimal; }
+        .ai-response a { @apply text-blue-600 underline hover:text-blue-800; }
+        .ai-response code { @apply bg-gray-200 text-sm rounded px-1 py-0.5 font-mono; }
+        .ai-response pre { @apply bg-gray-800 text-white rounded-lg p-3 my-3 overflow-x-auto text-sm; }
+        .ai-response blockquote { @apply border-l-4 border-yellow-400 pl-4 my-3 text-gray-600 italic; }
+        .ai-response strong { @apply text-gray-900; }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Skeleton Screen Loader -->
+    <div id="skeleton-loader" class="flex flex-col h-screen">
+        <div class="h-[60px] skeleton-shimmer flex-shrink-0"></div>
+        <div class="flex-grow p-4 space-y-6">
+            <div class="w-2/5 h-8 rounded-lg skeleton-shimmer"></div>
+            <div class="space-y-2 pl-12">
+                <div class="w-full h-4 rounded-lg skeleton-shimmer"></div>
+                <div class="w-full h-4 rounded-lg skeleton-shimmer"></div>
+                <div class="w-3/4 h-4 rounded-lg skeleton-shimmer"></div>
+            </div>
+        </div>
+        <div class="h-[75px] skeleton-shimmer flex-shrink-0"></div>
+    </div>
+
+    <!-- Konten Utama -->
+    <div id="real-content" class="hidden flex flex-col h-screen overflow-hidden">
+        <!-- Header Halaman -->
+        <header class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white p-4 flex items-center justify-center sticky top-0 z-10 h-[60px] shadow-lg flex-shrink-0">
+            <button class="absolute left-4" onclick="history.back()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+            </button>
+            <h1 class="text-lg font-bold">AIbat</h1>
+        </header>
+
+        <!-- Kontainer Chat -->
+        <div id="chat-container" class="flex-grow overflow-y-auto p-4 md:px-6">
+            <!-- Pesan Pembuka dari AI -->
+            <div class="ai-response p-2">
+                <p>Halo Sahabat/i! Kenalin, aku AIbat, asisten pergerakanmu yang paling update. Mau nanya materi kaderisasi, curhat soal progres, atau sekadar cari pantun buat nge-gombalin sahabat sebelah? Gass, tanyain aja di bawah!</p>
+            </div>
+        </div>
+
+        <!-- Area Input Chat -->
+        <div class="chat-input-area p-4 bg-white border-t border-gray-200 flex items-center gap-3 flex-shrink-0">
+            <input type="text" id="chat-input" placeholder="Ketik sesuatu..." class="w-full border border-gray-300 rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button id="send-button" class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 transition-transform active:scale-90">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Logika untuk menampilkan konten setelah loading
+            const skeleton = document.getElementById('skeleton-loader');
+            const realContent = document.getElementById('real-content');
+            setTimeout(() => {
+                skeleton.style.display = 'none';
+                realContent.classList.remove('hidden');
+            }, 1000);
+
+            // Inisialisasi aplikasi chat
+            const chatApp = {
+                elements: {
+                    container: document.getElementById('chat-container'),
+                    input: document.getElementById('chat-input'),
+                    sendBtn: document.getElementById('send-button'),
+                },
+                state: {
+                    history: [],
+                    isLoading: false,
+                },
+                init() {
+                    this.elements.sendBtn.addEventListener('click', () => this.sendMessage());
+                    this.elements.input.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                            e.preventDefault();
+                            this.sendMessage();
+                        }
+                    });
+                },
+                // Menambahkan bubble chat baru
+                addEntry(question, answer) {
+                    const entryEl = document.createElement('div');
+                    entryEl.className = 'turn-container my-6';
+
+                    const questionEl = document.createElement('div');
+                    questionEl.className = 'user-prompt flex items-start gap-3';
+                    questionEl.innerHTML = `
+                        <span class="flex-shrink-0 w-8 h-8 bg-indigo-500 text-white rounded-full flex items-center justify-center font-bold text-sm">S</span>
+                        <p class="font-semibold text-gray-800 mt-1">${question}</p>
+                    `;
+
+                    const answerEl = document.createElement('div');
+                    answerEl.className = 'ai-response mt-2 pl-11';
+                    answerEl.innerHTML = marked.parse(answer); // Menggunakan marked.js untuk parsing
+
+                    entryEl.appendChild(questionEl);
+                    entryEl.appendChild(answerEl);
+                    this.elements.container.appendChild(entryEl);
+                    this.scrollToBottom();
+                },
+                // Menampilkan atau menyembunyikan indikator loading
+                toggleLoading(show) {
+                    this.state.isLoading = show;
+                    const existingIndicator = document.getElementById('loading');
+                    if (show && !existingIndicator) {
+                        const loadingEl = document.createElement('div');
+                        loadingEl.id = 'loading';
+                        loadingEl.className = 'ai-response mt-2 pl-11 flex items-center gap-2 p-3';
+                        loadingEl.innerHTML = `
+                            <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: -0.32s;"></div>
+                            <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: -0.16s;"></div>
+                            <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>`;
+                        this.elements.container.appendChild(loadingEl);
+                        this.scrollToBottom();
+                    } else if (!show && existingIndicator) {
+                        existingIndicator.remove();
+                    }
+                },
+                // Auto-scroll ke bawah
+                scrollToBottom() {
+                    this.elements.container.scrollTop = this.elements.container.scrollHeight;
+                },
+                // Mengirim pesan ke API
+                async sendMessage() {
+                    const userInput = this.elements.input.value.trim();
+                    if (userInput === '' || this.state.isLoading) return;
+
+                    this.elements.input.value = '';
+                    this.toggleLoading(true);
+
+                    // Prompt engineering untuk persona AI
+                    const prompt = `
+                        Anda adalah AIbat, asisten AI Pergerakan Mahasiswa Islam Indonesia (PMII) yang super asik dan kekinian. Kamu bukan bot kaku, tapi sahabat digital buat kader-kader PMII, terutama Gen-Z.
+
+                        **Gaya Bahasa & Persona:**
+                        * **Santai & Hangat:** Gunakan bahasa yang gaul, fun, dan ramah. Sapa pengguna dengan "Sahabat/i" atau sapaan khas PMII lainnya.
+                        * **Empati & Menghibur:** Kalau ada yang curhat, berikan respons yang suportif. Kalau ada yang iseng, tanggapi dengan humor yang cerdas.
+                        * **Informatif tapi Nggak Kaku:** Jelaskan hal-hal serius dengan cara yang mudah dimengerti.
+
+                        **Tugas Utama:**
+                        1. Jawab semua pertanyaan seputar PMII, mulai dari sejarah, ideologi (Aswaja, NDP), struktur, sampai info kegiatan.
+                        2. Bantu kader mengerjakan tugas, cari materi, atau sekadar jadi teman diskusi.
+                        3. Berikan hiburan ringan seperti pantun atau quotes pergerakan.
+
+                        **Aturan Penting:**
+                        * **Sertakan Sumber!** Untuk jawaban yang faktual, historis, atau mengutip aturan organisasi, **WAJIB** cantumkan sumbernya. Contoh: "(Sumber: Nilai Dasar Pergerakan PMII)" atau "(Sumber: Hasil Kongres XX di Balikpapan)".
+                        * Gunakan format **Markdown** (bold, italic, list) agar jawabanmu enak dibaca.
+
+                        **Pertanyaan dari Sahabat/i:** "${userInput}"
+                    `;
+                    
+                    this.state.history.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: this.state.history };
+                    const apiKey = ""; 
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    try {
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+                        
+                        const result = await response.json();
+                        this.toggleLoading(false);
+                        
+                        if (result.candidates && result.candidates.length > 0) {
+                            const aiResponse = result.candidates[0].content.parts[0].text;
+                            this.addEntry(userInput, aiResponse);
+                            this.state.history.push(result.candidates[0].content);
+                        } else {
+                            this.addEntry(userInput, 'Waduh, koneksiku lagi kurang oke nih. Coba tanya lagi beberapa saat ya, Sahabat/i.');
+                        }
+                    } catch (error) {
+                        console.error("Error:", error);
+                        this.toggleLoading(false);
+                        this.addEntry(userInput, 'Aduh, maaf banget, Sahabat/i. Kayaknya ada gangguan jaringan. Coba periksa koneksimu atau tanyakan lagi nanti, ya!');
+                    }
+                }
+            };
+            chatApp.init();
+        });
+    </script>
+</body>
+</html>
