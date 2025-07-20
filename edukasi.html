@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edukasi</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Gaya dasar body */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Animasi shimmer untuk skeleton loader */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        .skeleton-shimmer {
+            animation: shimmer 2s infinite linear;
+            background: linear-gradient(to right, #e2e8f0 4%, #cbd5e1 25%, #e2e8f0 36%);
+            background-size: 1000px 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Skeleton Screen Loader -->
+    <div id="skeleton-loader">
+        <!-- Skeleton Header -->
+        <div class="h-[60px] skeleton-shimmer"></div>
+        <!-- Skeleton Grid -->
+        <div class="container mx-auto p-4 md:p-6 grid grid-cols-2 gap-4 md:gap-6">
+            <div class="bg-white rounded-lg shadow-sm">
+                <div class="aspect-[4/5] skeleton-shimmer rounded-t-lg"></div>
+                <div class="p-3"><div class="h-4 w-3/4 mx-auto rounded skeleton-shimmer"></div></div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm">
+                <div class="aspect-[4/5] skeleton-shimmer rounded-t-lg"></div>
+                <div class="p-3"><div class="h-4 w-3/4 mx-auto rounded skeleton-shimmer"></div></div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm">
+                <div class="aspect-[4/5] skeleton-shimmer rounded-t-lg"></div>
+                <div class="p-3"><div class="h-4 w-3/4 mx-auto rounded skeleton-shimmer"></div></div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm">
+                <div class="aspect-[4/5] skeleton-shimmer rounded-t-lg"></div>
+                <div class="p-3"><div class="h-4 w-3/4 mx-auto rounded skeleton-shimmer"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Konten Utama -->
+    <div id="real-content" class="hidden">
+        <header class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white p-4 flex items-center justify-center sticky top-0 z-10 h-[60px] shadow-lg">
+            <button class="absolute left-4" onclick="history.back()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+            </button>
+            <h1 class="text-lg font-bold">Edukasi</h1>
+        </header>
+
+        <main class="container mx-auto p-4 md:p-6 grid grid-cols-2 gap-4 md:gap-6">
+            {% for post in site.categories.edukasi %}
+            <a href="{{ post.url | relative_url }}" class="bg-white rounded-xl shadow-md overflow-hidden group transition-transform hover:-translate-y-1">
+                <div class="aspect-[4/5]">
+                    <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/400x500/3B82F6/FFFFFF?text=Edukasi';">
+                </div>
+                <p class="p-3 text-center text-sm font-bold text-gray-800 leading-snug">{{ post.title }}</p>
+            </a>
+            {% else %}
+            <p class="col-span-2 text-center text-gray-500 mt-8">Belum ada konten yang tersedia.</p>
+            {% endfor %}
+        </main>
+    </div>
+
+    <script>
+        // Logika untuk skeleton screen
+        window.addEventListener('load', function() {
+            const skeleton = document.getElementById('skeleton-loader');
+            const realContent = document.getElementById('real-content');
+
+            // Tampilkan konten setelah 1 detik
+            setTimeout(() => {
+                skeleton.style.display = 'none';
+                realContent.classList.remove('hidden');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
