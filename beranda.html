@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        /* Gaya dasar body */
+        body {
+            font-family: 'Inter', sans-serif;
+            padding-bottom: 90px; /* Ruang untuk navigasi bawah */
+        }
+
+        /* Animasi shimmer untuk skeleton loader */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        .skeleton-shimmer {
+            animation: shimmer 2s infinite linear;
+            background: linear-gradient(to right, #e2e8f0 4%, #cbd5e1 25%, #e2e8f0 36%);
+            background-size: 1000px 100%;
+        }
+        
+        /* Kustomisasi slider Swiper */
+        .swiper-slide {
+            width: 65%; /* Lebar slide agar terlihat sebagian */
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            opacity: 0.5;
+            transform: scale(0.85);
+        }
+        .swiper-slide-active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 1;
+        }
+
+        /* Wrapper untuk rasio aspek 4:5 pada kartu kolom */
+        .kolom-card-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 125%; /* 5 (tinggi) / 4 (lebar) * 100% */
+            border-radius: 0.5rem; /* rounded-lg */
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow-md */
+        }
+        .kolom-card-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Skeleton Screen Loader -->
+    <div id="skeleton-loader">
+        <div class="w-full aspect-[3/2] skeleton-shimmer"></div>
+        <div class="container mx-auto px-4 md:px-6 mt-6">
+            <div class="grid grid-cols-4 gap-4">
+                <div class="aspect-square rounded-lg skeleton-shimmer"></div>
+                <div class="aspect-square rounded-lg skeleton-shimmer"></div>
+                <div class="aspect-square rounded-lg skeleton-shimmer"></div>
+                <div class="aspect-square rounded-lg skeleton-shimmer"></div>
+            </div>
+            <div class="h-8 w-1/3 mt-8 rounded skeleton-shimmer"></div>
+            <div class="mt-4 space-y-4">
+                <div class="h-16 w-full rounded skeleton-shimmer"></div>
+                <div class="h-16 w-full rounded skeleton-shimmer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Konten Utama -->
+    <div id="real-content" class="hidden">
+        <main>
+            <!-- Hero Section -->
+            <section class="w-full aspect-[3/2]">
+                <img src="assets/images/2.png" alt="Gambar Hero PMII" class="w-full h-full object-cover">
+            </section>
+
+            <!-- Wrapper Konten -->
+            <div class="container mx-auto px-4 md:px-6">
+                
+                <!-- Menu Cepat -->
+                <section class="mt-6">
+                    <div class="grid grid-cols-4 gap-3 md:gap-5">
+                        <a href="aibat.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-lg shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center">
+                            <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="9" width="16" height="10" rx="2" stroke="#FFFFFF" stroke-width="2"/><path d="M8 9V7C8 5.34315 9.34315 4 11 4H13C14.6569 4 16 5.34315 16 7V9" stroke="#FFFFFF" stroke-width="2"/><circle cx="9" cy="14" r="1.5" fill="#FFCB05"/><circle cx="15" cy="14" r="1.5" fill="#FFCB05"/></svg></div>
+                            <span class="text-xs font-bold leading-tight">AIbat</span>
+                        </a>
+                        <a href="edukasi.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-lg shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center">
+                            <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10L12 14L20 10L12 6L4 10Z" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 11.5V16.5C7 16.5 9 18 12 18C15 18 17 16.5 17 16.5V11.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 10V12" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/></svg></div>
+                            <span class="text-xs font-bold leading-tight">Edukasi</span>
+                        </a>
+                        <a href="kompetisi.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-lg shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center">
+                            <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 8H19" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/><path d="M8 8V6C8 3.79086 9.79086 2 12 2C14.2091 2 16 3.79086 16 6V8" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/><path d="M17 8C17 13 15 15 12 17C9 15 7 13 7 8" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/><path d="M12 17V22" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/><path d="M9 22H15" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/><path d="M12 12L10.5 10.5M12 12L13.5 10.5" stroke="#FFCB05" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                            <span class="text-xs font-bold leading-tight">Kompetisi</span>
+                        </a>
+                        <a href="menu.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-lg shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center">
+                            <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="7" height="7" rx="1.5" fill="#FFFFFF"/><rect x="13" y="4" width="7" height="7" rx="1.5" fill="#FFCB05"/><rect x="4" y="13" width="7" height="7" rx="1.5" fill="#FFCB05"/><rect x="13" y="13" width="7" height="7" rx="1.5" fill="#FFFFFF"/></svg></div>
+                            <span class="text-xs font-bold leading-tight">Lainnya</span>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Daftar Esai -->
+                <section class="mt-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="flex items-center text-lg md:text-xl font-bold text-indigo-800"><span class="w-1 h-5 bg-yellow-400 mr-3 rounded"></span>Esai</h2>
+                        <a href="esai.html" class="text-sm font-bold text-blue-600">Lihat Semua &rarr;</a>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        {% for post in site.categories.esai limit:5 %}
+                        <a href="{{ post.url | relative_url }}" class="flex items-start gap-4 pb-4 border-b border-gray-200 last:border-b-0">
+                            <div class="flex-shrink-0 w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center text-lg font-bold text-indigo-800">{{ forloop.index }}</div>
+                            <div class="flex-grow pt-1"><p class="font-bold text-gray-800 leading-snug">{{ post.title }}</p></div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
+
+            <!-- Kolom Slider -->
+            <section class="mt-8">
+                <div class="container mx-auto px-4 md:px-6 flex justify-between items-center mb-4">
+                    <h2 class="flex items-center text-lg md:text-xl font-bold text-indigo-800"><span class="w-1 h-5 bg-yellow-400 mr-3 rounded"></span>Kolom</h2>
+                    <a href="kolom.html" class="text-sm font-bold text-blue-600">Lihat Semua &rarr;</a>
+                </div>
+                <!-- Slider -->
+                <div class="swiper w-full">
+                    <div class="swiper-wrapper">
+                        {% for post in site.categories.kolom limit:5 %}
+                        <div class="swiper-slide">
+                            <a href="{{ post.url | relative_url }}">
+                                <div class="kolom-card-wrapper">
+                                    <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+
+            <div class="container mx-auto px-4 md:px-6">
+                <!-- Daftar Artikel -->
+                <section class="mt-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="flex items-center text-lg md:text-xl font-bold text-indigo-800"><span class="w-1 h-5 bg-yellow-400 mr-3 rounded"></span>Artikel</h2>
+                        <a href="artikel.html" class="text-sm font-bold text-blue-600">Lihat Semua &rarr;</a>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        {% for post in site.categories.artikel limit:5 %}
+                        <a href="{{ post.url | relative_url }}" class="flex items-start gap-4 pb-4 border-b border-gray-200 last:border-b-0">
+                            <div class="flex-shrink-0 w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center text-lg font-bold text-indigo-800">{{ forloop.index }}</div>
+                            <div class="flex-grow pt-1">
+                                <p class="text-xs font-semibold text-blue-600 uppercase">{{ post.sub-category }}</p>
+                                <p class="font-bold text-gray-800 leading-snug mt-1">{{ post.title }}</p>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Navigasi Bawah -->
+    <footer class="fixed bottom-0 left-0 w-full h-[75px] bg-gradient-to-br from-blue-700 to-indigo-900 flex justify-around items-center rounded-t-2xl shadow-2xl z-50">
+        <a href="index.html" class="flex flex-col items-center text-yellow-400 opacity-100">
+            <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9.5L12 2L21 9.5V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="text-xs font-bold">Beranda</span>
+        </a>
+        <a href="berita.html" class="flex flex-col items-center text-white/70 hover:text-white transition">
+            <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span class="text-xs font-bold">Berita</span>
+        </a>
+        <a href="pmiide.html" class="flex flex-col items-center text-white/70 hover:text-white transition">
+            <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 21.5C9 21.7761 9.22386 22 9.5 22H14.5C14.7761 22 15 21.7761 15 21.5V21H9V21.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 18V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 12C10 13.1046 10.8954 14 12 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="text-xs font-bold">PMIIde</span>
+        </a>
+        <a href="akun.html" class="flex flex-col items-center text-white/70 hover:text-white transition">
+            <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="text-xs font-bold">Platform</span>
+        </a>
+    </footer>
+
+    <!-- Swiper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Logika untuk skeleton screen dan inisialisasi Swiper
+        window.addEventListener('load', function() {
+            const skeleton = document.getElementById('skeleton-loader');
+            const realContent = document.getElementById('real-content');
+
+            setTimeout(() => {
+                skeleton.style.display = 'none';
+                realContent.classList.remove('hidden');
+
+                // Inisialisasi Swiper setelah konten terlihat
+                const swiper = new Swiper('.swiper', {
+                    effect: 'coverflow',
+                    grabCursor: true,
+                    centeredSlides: true,
+                    slidesPerView: 'auto',
+                    loop: true,
+                    coverflowEffect: {
+                        rotate: 0,
+                        stretch: 0,
+                        depth: 100,
+                        modifier: 2.5,
+                        slideShadows: false,
+                    },
+                });
+            }, 1000); // Tampilkan konten setelah 1 detik
+        });
+    </script>
+</body>
+</html>
