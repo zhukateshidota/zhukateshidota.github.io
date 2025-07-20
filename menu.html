@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Gaya dasar body */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Animasi shimmer untuk skeleton loader */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        .skeleton-shimmer {
+            animation: shimmer 2s infinite linear;
+            background: linear-gradient(to right, #e2e8f0 4%, #cbd5e1 25%, #e2e8f0 36%);
+            background-size: 1000px 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 pb-24">
+
+    <!-- Skeleton Screen Loader -->
+    <div id="skeleton-loader">
+        <!-- Skeleton Header -->
+        <div class="h-[60px] skeleton-shimmer"></div>
+        <!-- Skeleton Grid -->
+        <div class="container mx-auto px-4 md:px-6 py-5">
+            <div class="grid grid-cols-4 gap-4">
+                <div class="aspect-square rounded-lg skeleton-shimmer"></div>
+                <div class="aspect-square rounded-lg skeleton-shimmer"></div>
+                <div class="aspect-square rounded-lg skeleton-shimmer"></div>
+                <div class="aspect-square rounded-lg skeleton-shimmer"></div>
+                <div class="aspect-square rounded-lg skeleton-shimmer"></div>
+                <div class="aspect-square rounded-lg skeleton-shimmer"></div>
+                <div class="aspect-square rounded-lg skeleton-shimmer"></div>
+                <div class="aspect-square rounded-lg skeleton-shimmer"></div>
+                <div class="aspect-square rounded-lg skeleton-shimmer"></div>
+                <div class="aspect-square rounded-lg skeleton-shimmer"></div>
+                <div class="aspect-square rounded-lg skeleton-shimmer"></div>
+                <div class="aspect-square rounded-lg skeleton-shimmer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Konten Utama -->
+    <div id="real-content" class="hidden">
+        <header class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white p-4 flex items-center justify-center sticky top-0 z-10 h-[60px] shadow-lg">
+            <h1 class="text-lg font-bold">Menu</h1>
+        </header>
+
+        <main>
+            <div class="container mx-auto p-4 md:p-6">
+                <section class="grid grid-cols-4 gap-3 md:gap-5">
+                    <a href="aibat.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-xl shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center transition-transform hover:scale-105">
+                        <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="9" width="16" height="10" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 9V7C8 5.34315 9.34315 4 11 4H13C14.6569 4 16 5.34315 16 7V9" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="14" r="1.5" fill="#FFCB05"/><circle cx="15" cy="14" r="1.5" fill="#FFCB05"/></svg></div>
+                        <span class="text-xs font-bold leading-tight">AIbat</span>
+                    </a>
+                    <a href="edukasi.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-xl shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center transition-transform hover:scale-105">
+                        <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10L12 14L20 10L12 6L4 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 11.5V16.5C7 16.5 9 18 12 18C15 18 17 16.5 17 16.5V11.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 10V12" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/></svg></div>
+                        <span class="text-xs font-bold leading-tight">Edukasi</span>
+                    </a>
+                    <a href="kompetisi.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-xl shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center transition-transform hover:scale-105">
+                        <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 8H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 8V6C8 3.79086 9.79086 2 12 2C14.2091 2 16 3.79086 16 6V8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M17 8C17 13 15 15 12 17C9 15 7 13 7 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 17V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 22H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 12L10.5 10.5M12 12L13.5 10.5" stroke="#FFCB05" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                        <span class="text-xs font-bold leading-tight">Kompetisi</span>
+                    </a>
+                    <a href="amaliyah.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-xl shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center transition-transform hover:scale-105">
+                        <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 8V16" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/><path d="M8 12H16" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/></svg></div>
+                        <span class="text-xs font-bold leading-tight">Amaliyah</span>
+                    </a>
+                    <a href="pustaka.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-xl shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center transition-transform hover:scale-105">
+                        <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 19V5C4 3.89543 4.89543 3 6 3H18C19.1046 3 20 3.89543 20 5V19C20 20.1046 19.1046 21 18 21H6C4.89543 21 4 20.1046 4 19Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 3V21" stroke="#FFCB05" stroke-width="2"/></svg></div>
+                        <span class="text-xs font-bold leading-tight">Pustaka</span>
+                    </a>
+                    <a href="kaderisasi.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-xl shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center transition-transform hover:scale-105">
+                        <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 20V14C17 12.8954 16.1046 12 15 12H9C7.89543 12 7 12.8954 7 14V20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 20V16C3 14.8954 3.89543 14 5 14H7" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/><path d="M21 20V16C21 14.8954 20.1046 14 19 14H17" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/></svg></div>
+                        <span class="text-xs font-bold leading-tight">Kaderisasi</span>
+                    </a>
+                    <a href="spesialis.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-xl shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center transition-transform hover:scale-105">
+                        <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M16 16L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M11 8V14" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/><path d="M8 11H14" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/></svg></div>
+                        <span class="text-xs font-bold leading-tight">Spesialis</span>
+                    </a>
+                    <a href="mentoring.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-xl shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center transition-transform hover:scale-105">
+                        <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 21V19C20 16.7909 18.2091 15 16 15H8C5.79086 15 4 16.7909 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15L12 21" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/></svg></div>
+                        <span class="text-xs font-bold leading-tight">Mentoring</span>
+                    </a>
+                    <a href="diskursus.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-xl shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center transition-transform hover:scale-105">
+                        <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 11.5C21 16.7467 16.7467 21 11.5 21C6.25329 21 2 16.7467 2 11.5C2 6.25329 6.25329 2 11.5 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M22 2L15 9" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/><path d="M22 9H15V2" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/></svg></div>
+                        <span class="text-xs font-bold leading-tight">Diskursus</span>
+                    </a>
+                    <a href="koleksi.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-xl shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center transition-transform hover:scale-105">
+                        <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L4 9V21H20V9L12 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 21V15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 12H14" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/></svg></div>
+                        <span class="text-xs font-bold leading-tight">Koleksi</span>
+                    </a>
+                    <a href="jurnal.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-xl shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center transition-transform hover:scale-105">
+                        <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 13H15" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/><path d="M9 17H13" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/></svg></div>
+                        <span class="text-xs font-bold leading-tight">Jurnal</span>
+                    </a>
+                    <a href="buku.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-xl shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center transition-transform hover:scale-105">
+                        <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L14 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M20 10L10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M20 14L14 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M20 18L10 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4 21V3H8C10.2091 3 12 4.79086 12 7V21H4Z" stroke="#FFCB05" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <span class="text-xs font-bold leading-tight">Buku</span>
+                    </a>
+                    <a href="koran.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-xl shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center transition-transform hover:scale-105">
+                        <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 6H14" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/><path d="M10 10H14" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/><path d="M10 14H14" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/><path d="M10 18H14" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/></svg></div>
+                        <span class="text-xs font-bold leading-tight">Koran</span>
+                    </a>
+                    <a href="artikel.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-xl shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center transition-transform hover:scale-105">
+                        <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2V8H20" stroke="#FFCB05" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <span class="text-xs font-bold leading-tight">Artikel</span>
+                    </a>
+                    <a href="esai.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-xl shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center transition-transform hover:scale-105">
+                        <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 20L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 20L18 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6 20L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 4L15 7" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/><path d="M12 4L9 7" stroke="#FFCB05" stroke-width="2" stroke-linecap="round"/></svg></div>
+                        <span class="text-xs font-bold leading-tight">Esai</span>
+                    </a>
+                    <a href="kolom.html" class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-xl shadow-md aspect-square flex flex-col items-center justify-center p-2 text-white text-center transition-transform hover:scale-105">
+                        <div class="w-1/2 mb-1"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="6" height="16" rx="2" stroke="currentColor" stroke-width="2"/><rect x="14" y="4" width="6" height="16" rx="2" stroke="#FFCB05" stroke-width="2"/></svg></div>
+                        <span class="text-xs font-bold leading-tight">Kolom</span>
+                    </a>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Navigasi Bawah -->
+    <footer class="fixed bottom-0 left-0 w-full h-[75px] bg-gradient-to-br from-blue-700 to-indigo-900 flex justify-around items-center rounded-t-2xl shadow-2xl z-50">
+        <a href="beranda.html" class="flex flex-col items-center text-white/70 hover:text-white transition">
+            <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9.5L12 2L21 9.5V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="text-xs font-bold">Beranda</span>
+        </a>
+        <a href="berita.html" class="flex flex-col items-center text-white/70 hover:text-white transition">
+            <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span class="text-xs font-bold">Berita</span>
+        </a>
+        <a href="pmiide.html" class="flex flex-col items-center text-white/70 hover:text-white transition">
+            <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 21.5C9 21.7761 9.22386 22 9.5 22H14.5C14.7761 22 15 21.7761 15 21.5V21H9V21.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 18V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 12C10 13.1046 10.8954 14 12 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="text-xs font-bold">PMIIde</span>
+        </a>
+        <a href="platform.html" class="flex flex-col items-center text-white/70 hover:text-white transition">
+            <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="text-xs font-bold">Platform</span>
+        </a>
+    </footer>
+
+    <script>
+        // Logika untuk skeleton screen
+        window.addEventListener('load', function() {
+            const skeleton = document.getElementById('skeleton-loader');
+            const realContent = document.getElementById('real-content');
+
+            // Tampilkan konten setelah 1 detik
+            setTimeout(() => {
+                skeleton.style.display = 'none';
+                realContent.classList.remove('hidden');
+            }, 1000);
+        });
+    </script>
+</body>
+</ht
